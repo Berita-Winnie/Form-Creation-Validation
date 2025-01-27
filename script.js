@@ -36,7 +36,7 @@ if (password.length <8){
 
 //Display Feedback
 feedbackDiv.style.display = "block";
-if(isValid){
+if(isValid = true){
     feedbackDiv.textContent ="Registration Successfull!";
     feedbackDiv.style.color = "#dc3545";
 } else {
