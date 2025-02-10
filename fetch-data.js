@@ -1,38 +1,39 @@
-//initialize Async Function
-async function fetchUserData(){
-   //define the API URL
-    const apiUrl =  'https://jsonplaceholder.typicode.com/users';
+//Initialize the async function
+async function fetchUserData () {
 
-    //Select the Data Container Element
-    const dataContainer = document.getElementById("api-data");
+//define the API URL     
+const apiUrl = 'https://jsonplaceholder.typicode.com/users';
 
-    //Fetch data using try catch
-   
-          try {
-           const response = await fetch(apiUrl); //fetch data
-           const users = await response.json(); //Parse JSON
+//select the Data Container Element
+const dataContainer = document.getElementById('api-data');
 
-    //Clear Previous Content
-           dataContainer.innerHTML = '';
+//fetching data using try catch
+try {
+    const response = await fetch (apiUrl);
+    const users = await response.json();
 
-    //Create  and Populate the user list       
-            const userList = document.createElement('ul');
-            users.forEach((user) =>{
-                const liElement =document.createElement('li');
-                liElement.textContent = user.name;
-                userList.appendChild(liElement);
-               });
+//clear and loading Message
+    dataContainer.innerHTML = '';
 
-    //Append the list to the Data Container;
-           dataContainer.appendChild(userList);
+//clear and append user list
+const userList = document.createElement("ul");
 
-    //Error Handling;
-          } catch (error){
-           dataContainer.innerHTML ='';
-           dataContainer.textContent = 'Failed to load user data.'; 
-          }
-    }
+ users.forEach((user) => {
+       const li = document.createElement("li");
+       li.textContent = user.username;
+       userList.appendChild(li);
+ });
+ dataContainer.appendChild(userList);
 
-//Invoke fetchUserData on DOMContenLoaded     
-document.addEventListener('DOMContentLoaded', fetchUserData);
-   
+} catch (error) {
+    
+//clear existing Content
+dataContainer.innerHTML ='';
+dataContainer.textContent = 'Failed to load user data.'
+}
+
+}
+ 
+document.addEventListener("DOMContentLoaded", function(){
+       fetchUserData();
+});
